@@ -1,0 +1,86 @@
+// PROCEDURE: Add New Film
+CREATE OR REPLACE PROCEDURE add_film(
+    p_title VARCHAR,
+    p_genre VARCHAR,
+    p_budget NUMERIC
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO films(title, genre, budget)
+    VALUES (p_title, p_genre, p_budget);
+END;
+$$;
+
+CALL add_film('Interstellar', 'Sci-Fi', 165000000);
+
+// FUNCTION: Get Total Actors in a Film
+CREATE OR REPLACE FUNCTION get_actor_count(p_film_id INT)
+RETURNS INT
+LANGUAGE plpgsql
+AS $$
+DECLARE total INT;
+BEGIN
+    SELECT COUNT(*) INTO total
+    FROM film_cast
+    WHERE film_id = p_film_id;
+
+    RETURN total;
+END;
+$$;
+
+SELECT get_actor_count(1);
+
+// FUNCTION: Calculate Total Crew Salary for Film
+CREATE OR REPLACE FUNCTION total_crew_salary(p_film_id INT)
+RETURNS NUMERIC
+LANGUAGE plpgsql
+AS $$
+DECLARE total NUMERIC;
+BEGIN
+    SELECT SUM(c.salary) INTO total
+    FROM film_crew fc
+    JOIN crew c ON fc.crew_id = c.crew_id
+    WHERE fc.film_id = p_film_id;
+
+    RETURN total;
+END;
+$$;
+
+// TRIGGER: Prevent Deleting Film with Schedules
+CREATE OR REPLACE FUNCTION prevent_film_delete()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF EXISTS (
+        SELECT 1 FROM schedules
+        WHERE film_id = OLD.film_id
+    ) THEN
+        RAISE EXCEPTION 'Cannot delete film with existing schedules';
+    END IF;
+
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_prevent_delete
+BEFORE DELETE ON films
+FOR EACH ROW
+EXECUTE FUNCTION prevent_film_delete();
+
+// TRIGGER: Auto-Set Default Budget if NULL
+CREATE OR REPLACE FUNCTION set_default_budget()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.budget IS NULL THEN
+        NEW.budget := 1000000; -- default value
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_default_budget
+BEFORE INSERT ON films
+FOR EACH ROW
+EXECUTE FUNCTION set_default_budget();
+
