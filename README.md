@@ -1,8 +1,8 @@
-# 🎬 Film Production Database Management System
+ FILM PRODUCTION DATABASE MANAGEMENT SYSTEM
 
-## 📌 Project Overview
+##  PROJECT OVERVIEW
 
-This project is a **Film Production Database Management System** developed using **Java (Swing GUI)** and **Supabase PostgreSQL**. It allows users to manage film production data including films, actors, and crew members through a graphical interface.
+This project is a  "FILM PRODUCTION DATABASE MANAGEMENT SYSTEM" developed using Java (Swing GUI) and Supabase PostgreSQL. It allows users to manage film production data including films, actors, and crew members through a graphical interface.
 
 The system demonstrates core database concepts such as:
 
@@ -13,18 +13,18 @@ The system demonstrates core database concepts such as:
 
 ---
 
-## 🛠️ Technologies Used
+## TECHNOLOGIES USED
 
-* **Java (Swing)** – GUI development
-* **PostgreSQL (Supabase)** – Cloud database
-* **JDBC** – Database connectivity
-* **Maven** – Dependency management
-* **IntelliJ IDEA** – Development environment
-* **Git & GitHub** – Version control
+* Java (Swing)– G UI development
+* PostgreSQL (Supabase) – Cloud database
+* JDBC – Database connectivity
+* Maven – Dependency management
+* IntelliJ IDEA – Development environment
+* Git & GitHub – Version control
 
 ---
 
-## 🗂️ Project Structure
+##  PROJECT STRUCTURE
 
 ```
 film-production-dbms/
@@ -50,19 +50,19 @@ film-production-dbms/
 
 ---
 
-## ⚙️ Features
+##  FEATURES
 
-* 🔐 Login screen
-* 🧭 Dashboard navigation
-* 🎬 Film management (Insert, Update, Delete, View)
-* 🎭 Actor management (Insert, Delete, View)
-* 👷 Crew management (Insert, Delete, View)
-* ☁️ Cloud database integration (Supabase)
-* 🔄 Real-time database updates
+*  Login screen
+*  Dashboard navigation
+*  Film management (Insert, Update, Delete, View)
+*  Actor management (Insert, Delete, View)
+*  Crew management (Insert, Delete, View)
+*  Cloud database integration (Supabase)
+*  Real-time database updates
 
 ---
 
-## 🗄️ Database Design
+## DATABASE DESIGN
 
 The system uses a relational database with tables such as:
 
@@ -80,7 +80,7 @@ database.sql
 
 ---
 
-## 🔌 Database Connection
+##  DATABASE CONNECTION
 
 The application connects to Supabase using JDBC with SSL enabled.
 
@@ -94,7 +94,7 @@ String password = System.getenv("DB_PASSWORD");
 
 ---
 
-## 🚀 How to Run the Project
+##  HOW TO RUN THE PROJECT
 
 ### 1. Clone Repository
 
@@ -133,7 +133,7 @@ Main.java
 
 ---
 
-## 📊 Usage
+##  Usage
 
 1. Login to the system
 2. Navigate using dashboard
@@ -146,46 +146,11 @@ Main.java
 
 ---
 
-## ⚠️ Notes
 
-* Ensure Supabase database is active
-* Use correct connection string and credentials
-* Foreign key constraints may restrict deletion unless handled
+##  Security
 
----
-
-## 🔒 Security
-
-* Database credentials are **not hardcoded**
+* Database credentials are NOT HARDCODED
 * Uses environment variables for secure access
 
 ---
 
-## 📷 Screenshots (Optional)
-
-*Add screenshots of your GUI here for better presentation*
-
----
-
-## 📚 Learning Outcomes
-
-This project demonstrates:
-
-* Database design and normalization
-* SQL queries and data manipulation
-* Java GUI development
-* Client-server database interaction
-
----
-
-## 👨‍💻 Author
-
-Your Name
-Course / Module Name
-Institution Name
-
----
-
-## 📄 License
-
-This project is for academic purposes only.
